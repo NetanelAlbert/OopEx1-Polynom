@@ -12,15 +12,10 @@ class UnitTestPolynom {
 	}
 	@Test
 	void testSubstract() {
-		assertNotEquals(2, 4, "2!=4");
 		for (int i = 0; i < 100; i++) { 
 			Polynom p = randomPolynom();
 			p.substract(p);
-			assertNotEquals(2, 4, "2!=4");
-			if(!p.isZero()) {
-				System.out.println("wrong: " + p + " != 0");
-				//fails++;
-			}
+			assertTrue(p.isZero(), "p-p should be zero but it is: " + p);
 		}
 	}
 	
@@ -42,7 +37,11 @@ class UnitTestPolynom {
 	}
 	@Test
 	void testCopy() {
-		fail("Not yet implemented");
+		for (int i = 0; i < 100; i++) { 
+			Polynom p = randomPolynom();
+			Polynom pCopy = (Polynom)p.copy();
+			assertTrue(p.equals(pCopy), p+" isn't equals to his copy: " + pCopy);
+		}
 	}
 	@Test
 	void testDerivative() {
@@ -54,14 +53,18 @@ class UnitTestPolynom {
 	}
 	@Test
 	void testToString() {
-		fail("Not yet implemented");
+		for (int i = 0; i < 100; i++) { 
+			Polynom p = randomPolynom();
+			Polynom pCopy = new Polynom(p.toString());
+			assertTrue(p.equals(pCopy), p+" isn't equals to his copy: " + pCopy);
+		}
 	}
 	
 	private static Polynom randomPolynom() {
 		int monoms = (int)(Math.random()*10);
 		Polynom p = new Polynom();
 		for (int i = 0; i < monoms; i++) {
-			p.add(MonomTest.randomMonom());
+			p.add(UnitTestMonom.randomMonom());
 		}
 		return p;
 	}

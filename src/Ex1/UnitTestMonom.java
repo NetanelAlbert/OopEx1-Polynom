@@ -35,6 +35,11 @@ class UnitTestMonom {
 	void testCopy() {
 		fail("Not yet implemented");
 	}
-
+	
+	public static Monom randomMonom() {
+		double c = Math.random()*100*(Math.random()-0.5); //some number in range -50 to 50
+		int p = (int)(Math.random()*10);
+		return new Monom(c,p);
+	}
 
 }
