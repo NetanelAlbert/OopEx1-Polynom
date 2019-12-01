@@ -14,7 +14,7 @@ import Ex1.Monom;
  *
  */
 public class Polynom implements Polynom_able {
-	
+
 	/**
 	 * Keeps the Monoms of this Polynom when the power of each Monom is the key for it.
 	 * the benefits of the TreeMap are: a. non duplicate structure, b. get a Monom in O(1), 
@@ -65,20 +65,20 @@ public class Polynom implements Polynom_able {
 	@Override
 	public void add(Monom m1) {
 		int index = m1.get_power();
-			
+
 		if (map.get(index) != null)
 			map.get(index).add(m1);
 		else
 			map.put(index, new Monom(m1));
-		
+
 		if(map.get(index).isZero()) // remove empty Monom
 			map.remove(index);
-		
+
 	}
 
 	@Override
 	public void substract(Polynom_able p1) {
-		Polynom_able c = p1.copy();
+		Polynom_able c = (Polynom_able) p1.copy();
 		c.multiply(Monom.MINUS1);
 		add(c);
 	}
@@ -94,16 +94,19 @@ public class Polynom implements Polynom_able {
 
 		map.clear();
 		while (it.hasNext()) {
-			Polynom_able tmp = copy.copy();
+			Polynom_able tmp = (Polynom_able) copy.copy();
 			tmp.multiply(it.next());
 			add(tmp);
 		}
 	}
 
 	@Override
-	public boolean equals(Polynom_able p1) {
+	public boolean equals(Object p1) {
+		if( !(p1 instanceof Polynom))
+			return false;
+		Polynom p2 = (Polynom)p1;
 		Polynom_able p = copy();
-		p.substract(p1);
+		p.substract(p2);
 		return p.isZero();
 	}
 
@@ -121,15 +124,15 @@ public class Polynom implements Polynom_able {
 	public double root(double x0, double x1, double eps) {
 		if(f(x0)*f(x1) > 0)
 			throw new RuntimeException("Invalid input: x1 and x0 can't be in the same side of the x line");
-		
+
 		if(f(x0) > 0)
 			return root(x1,x0,eps);
-		
+
 		double x = (x0+x1)*0.5;
 		double y = f(x);
 		if(-eps < y && y < eps)
 			return x;
-		
+
 		if(y > 0)
 			return root(x0, x, eps);
 		else
@@ -181,7 +184,7 @@ public class Polynom implements Polynom_able {
 		} else {
 			Iterator<Monom> it = copy().iteretor();
 			map.clear();
-			
+
 			while (it.hasNext()) {
 				Monom m = it.next();
 				m.multipy(m1);
@@ -189,7 +192,7 @@ public class Polynom implements Polynom_able {
 			}
 		}
 	}
-	
+
 	/**
 	 * Returns a string representation of the polynom, 
 	 * when the lowest power are in the left and the highest in the right.
@@ -204,7 +207,7 @@ public class Polynom implements Polynom_able {
 		String ans = "";
 		if(iter.hasNext())
 			ans += iter.next();
-		
+
 		while (iter.hasNext()) {
 			Monom monom = iter.next();
 			if(monom.get_coefficient() > 0)
@@ -212,5 +215,10 @@ public class Polynom implements Polynom_able {
 			ans += monom;
 		}
 		return ans;
+	}
+
+	@Override
+	public function initFromString(String s) {
+		return new Polynom(s);
 	}
 }

@@ -209,6 +209,14 @@ public class Monom implements function{
 	private static Monom getNewZeroMonom() {return new Monom(ZERO);}
 	private double _coefficient;
 	private int _power;
+	@Override
+	public function initFromString(String s) {
+		return new Monom(s);
+	}
+	@Override
+	public function copy() {
+		return new Monom(this);
+	}
 	
 	
 }

@@ -3,13 +3,13 @@ package Ex1;
 import java.util.Iterator;
 
 /**
- * This interface represents a general Polynom: f(x) = a_1X^b_1 + a_2X^b_2 ... a_nXb_n,
+ * This interface represents a general Polynom: f(x) = a_1X^b_1 + a_2*X^b_2 ... a_n*Xb_n,
  * where: a_1, a_2 ... a_n are real numbers and b_1<b_2..<b_n are none negative integers (naturals)
  * For formal definitions see: https://en.wikipedia.org/wiki/Polynomial
  * 
  * Such polygon has the following functionality:
  * 1. Init:
- * 1.1 Init(String), e.g., {"x", "3+1.4X^3-34x", "3-3.4x+1", "3.1x-1.2", "3X^2-3.1"};
+ * 1.1 Init(String), e.g., {"x", "3+1.4X^3-34x", "(2x^2-4)*(-1.2x-7.1)", "(3-3.4x+1)*((3.1x-1.2)-(3X^2-3.1))"};
  * 1.2 Init() // zero Polygon
  * 1.3 Polynom copy() // deep copy semantics
  * 
@@ -64,18 +64,13 @@ public interface Polynom_able extends cont_function{
 	 * @param p1
 	 * @return true iff this polynom represents the same function as p1
 	 */
-	public boolean equals (Polynom_able p1);
+	public boolean equals (Object p1);
 	/**
 	 * Test if this is the Zero Polynom
 	 * @return
 	 */
 	public boolean isZero();
 	
-	/**
-	 * create a deep copy of this Polynom
-	 * @return 
-	 */
-	public Polynom_able copy();
 	/**
 	 * Compute a new Polynom which is the derivative of this Polynom
 	 * @return
