@@ -102,14 +102,20 @@ public class Polynom implements Polynom_able {
 
 	@Override
 	public boolean equals(Object p1) {
-		if( !(p1 instanceof Polynom))
-			return false;
-		Polynom p2 = (Polynom)p1;
+		if(p1 instanceof Polynom)
+			return equals((Polynom)p1);
+		
+		if(p1 instanceof Monom)
+			return equals(new Polynom(p1.toString()));
+		
+		return false;
+	}
+	private boolean equals(Polynom p1) {
 		Polynom_able p = copy();
-		p.substract(p2);
+		p.substract(p);
 		return p.isZero();
 	}
-
+	
 	@Override
 	public boolean isZero() {
 		for (Iterator<Monom> iterator = this.iteretor(); iterator.hasNext();) {

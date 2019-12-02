@@ -155,9 +155,16 @@ public class Monom implements function{
 	 * @return true if the powers are equals 
 	 * and the coefficient difference is less then {@value #EPSILON}, false otherwise
 	 */
-	public boolean equals(Monom m) {
-		return get_power() == m.get_power() &&
-				Math.abs(get_coefficient() - m.get_coefficient()) < EPSILON;
+	public boolean equals(Object m) {
+		if(m instanceof Polynom)
+			return m.equals(this);
+		if(m instanceof Monom) {
+			Monom m1 = (Monom)m;
+			return get_power() == m1.get_power() &&
+					Math.abs(get_coefficient() - m1.get_coefficient()) < EPSILON;
+	
+		}
+		return false;
 	}
 
 	//****************** Private Methods and Data *****************

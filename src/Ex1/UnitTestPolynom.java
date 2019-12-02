@@ -8,10 +8,10 @@ class UnitTestPolynom {
 
 	@Test
 	void testAdd() {
-		fail("Not yet implemented");
 	}
+	
 	@Test
-	void testSubstract() {
+	void testSubstractAndIsZero() {
 		for (int i = 0; i < 100; i++) { 
 			Polynom p = randomPolynom();
 			p.substract(p);
@@ -27,10 +27,7 @@ class UnitTestPolynom {
 	void testEquals() {
 		fail("Not yet implemented");
 	}
-	@Test
-	void testIsZero() {
-		fail("Not yet implemented");
-	}
+	
 	@Test
 	void testRoot() {
 		fail("Not yet implemented");
