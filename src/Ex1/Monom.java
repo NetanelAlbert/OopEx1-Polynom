@@ -141,8 +141,8 @@ public class Monom implements function{
 		String ans = "";
 		if(get_coefficient() == -1) 
 			ans += '-';
-		else if(get_coefficient() != 1) 
-			ans += String.format("%.10f", get_coefficient());
+		else if(get_coefficient() != 1 || get_power() == 0) 
+			ans += String.format("%.7f", get_coefficient());
 		
 		if(get_power() > 0) ans += "x";
 		if(get_power() > 1) ans += "^" + get_power();
