@@ -27,34 +27,6 @@ public class ComplexFunction implements complex_function {
 		this(stringtoOperation(s), f1, f2);
 	}
 
-	static private Operation stringtoOperation(String s) {
-		s = s.toLowerCase();
-		switch (s) {
-
-		case "plus":
-			return Operation.Plus;
-
-		case "mul":
-			return Operation.Times;
-
-		case "div":
-			return Operation.Divid;
-
-		case "max":
-			return Operation.Max;
-
-		case "min":
-			return Operation.Min;
-
-		case "comp":
-			return Operation.Comp;
-
-		default:
-			throw new RuntimeException("Operation unknown");
-
-		}
-	}
-
 	@Override
 	public double f(double x) {
 
@@ -178,12 +150,80 @@ public class ComplexFunction implements complex_function {
 	}
 
 	public boolean equals(Object obj) {
-		return false;
+		if(!(obj instanceof function))
+			return false;
+		
+		function f = (function)obj;
+			
+		for (int i = -100; i < 100; i++) {
+			if(!compareDouble(f(i), f.f(i))) 
+				return false;
+		}
+		return true;
+	}
+	
+	private boolean compareDouble(double d1, double d2) {
+		return Math.abs(d2-d1) < Monom.EPSILON;
 	}
 
 	public String toString() {
 		if(op == Operation.None)
 			return left.toString();
-		return op+"("+left+","+right+")";
+		return operationToString(op)+"("+left+","+right+")";
+	}
+	
+	static private Operation stringtoOperation(String s) {
+		s = s.toLowerCase();
+		switch (s) {
+
+		case "plus":
+			return Operation.Plus;
+
+		case "mul":
+			return Operation.Times;
+
+		case "div":
+			return Operation.Divid;
+
+		case "max":
+			return Operation.Max;
+
+		case "min":
+			return Operation.Min;
+
+		case "comp":
+			return Operation.Comp;
+
+		default:
+			throw new RuntimeException("Operation unknown");
+
+		}
+	}
+	
+	static private String operationToString(Operation op) {
+		switch (op) {
+
+		case Plus:
+			return "plus";
+
+		case Times:
+			return "mul";
+
+		case Divid:
+			return "div";
+
+		case Max:
+			return "max";
+
+		case Min:
+			return "min";
+
+		case Comp:
+			return "comp";
+
+		default:
+			throw new RuntimeException("Operation not soppost to br used");
+
+		}
 	}
 }

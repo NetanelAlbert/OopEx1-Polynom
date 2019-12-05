@@ -1,99 +1,24 @@
 package Ex1;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.ArrayList;
+import com.google.gson.Gson;
 
-public class Functions_GUI implements functions {
+public class Functions_GUI extends ArrayList<function> implements functions {
 	
 	@Override
-	public boolean add(function arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean addAll(Collection<? extends function> arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void clear() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean contains(Object arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean containsAll(Collection<?> arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Iterator<function> iterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean remove(Object arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean removeAll(Collection<?> arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean retainAll(Collection<?> arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <T> T[] toArray(T[] arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void initFromFile(String file) throws IOException {
-		// TODO Auto-generated method stub
-
+		Gson g = new Gson();
+		
 	}
 
 	@Override
 	public void saveToFile(String file) throws IOException {
-		// TODO Auto-generated method stub
-
+		/*
+		 * Gson g = new Gson(); String json = g.toJson(this); Functions_GUI fg =
+		 * g.fromJson(json, Functions_GUI.class); for (int i = 0; i < fg.size(); i++) {
+		 * System.out.println(get(i)); }
+		 */
 	}
 
 	@Override
