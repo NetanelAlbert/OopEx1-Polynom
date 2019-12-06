@@ -1,10 +1,13 @@
 package Ex1;
 
-import java.awt.List;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+
 import com.google.gson.Gson;
 
 public class Functions_GUI extends ArrayList<function> implements functions {
@@ -42,13 +45,33 @@ public class Functions_GUI extends ArrayList<function> implements functions {
 
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
-
+		
 	}
 
 	@Override
 	public void drawFunctions(String json_file) {
-		// TODO Auto-generated method stub
-
+		Gson gson = new Gson();	
+		Reader reader=null;
+		try {
+			reader = new FileReader(json_file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		GUI_params params = gson.fromJson(reader, GUI_params.class);
+		Range rx = new Range(params.Range_X[0], params.Range_X[1]);
+		Range ry = new Range(params.Range_Y[0], params.Range_Y[1]);
+		drawFunctions(params.width, params.height, rx, ry, params.resolution);
+	}
+	
+	private class GUI_params{
+		int width;
+		int height;
+		double[] Range_X;
+		double[] Range_Y;
+		int resolution;
+		
 	}
 
 }

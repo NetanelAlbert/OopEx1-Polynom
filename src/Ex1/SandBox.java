@@ -24,10 +24,7 @@ public class SandBox {
 			e.printStackTrace();
 		}
 		
-		for (int i = 0; i < fgui2.size(); i++) {
-			System.out.println(fgui2.get(i));
-		}
-		
+		fgui.drawFunctions("GUI_params.txt");
 		
 	}
 
