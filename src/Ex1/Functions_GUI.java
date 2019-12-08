@@ -66,20 +66,31 @@ public class Functions_GUI extends ArrayList<function> implements functions {
 			StdDraw.line(-0.2, i, 0.2, i);
 			StdDraw.text(0.5, i, i+"");
 		}
-		double x_step = rx.size()/resolution;
 		Color[] colors = {StdDraw.BLUE, StdDraw.YELLOW, StdDraw.RED, StdDraw.PRINCETON_ORANGE,
 				StdDraw.PINK ,StdDraw.BOOK_BLUE, StdDraw.MAGENTA, StdDraw.ORANGE, StdDraw.LIGHT_GRAY,
 				StdDraw.GREEN, StdDraw.DARK_GRAY, StdDraw.CYAN, StdDraw.BOOK_RED, StdDraw.BOOK_BLUE,
 				StdDraw.BOOK_LIGHT_BLUE, StdDraw.GRAY};
 		
+		double x_step = rx.size()/resolution;
 		for (int i = 0; i < size(); i++) {
 			StdDraw.setPenColor(colors[i % colors.length]);
 			function fun = get(i);
-			double f = fun.f(rx.get_min());
+			Double f, fStep = null;
+			try {
+				f = fun.f(rx.get_min());				
+			} catch (Exception e) {
+				f=null;
+			}
 			for (double x = rx.get_min(); x < rx.get_max(); x += x_step) {
-				double fStep = fun.f(x+x_step);
-				StdDraw.line(x, f, x+x_step, fStep);
-				f = fStep;
+				try {
+					fStep = fun.f(x+x_step);
+					if(f != null && fStep != null)
+						StdDraw.line(x, f, x+x_step, fStep);
+				} catch (Exception e) {
+					fStep = null;
+				} finally {
+					f = fStep;										
+				}
 			}	
 		}
 	}
@@ -88,24 +99,25 @@ public class Functions_GUI extends ArrayList<function> implements functions {
 	public void drawFunctions(String json_file) {
 		Gson gson = new Gson();	
 		Reader reader=null;
+		GUI_params params;
 		try {
 			reader = new FileReader(json_file);
+			params = gson.fromJson(reader, GUI_params.class);
 		} catch (FileNotFoundException e) {
-			throw new RuntimeException("File '"+json_file+"' doesn't exist");
+			params = new GUI_params();
 		}
 		
-		GUI_params params = gson.fromJson(reader, GUI_params.class);
 		Range rx = new Range(params.Range_X[0], params.Range_X[1]);
 		Range ry = new Range(params.Range_Y[0], params.Range_Y[1]);
 		drawFunctions(params.Width, params.Height, rx, ry, params.Resolution);
 	}
 	
 	private class GUI_params{
-		int Width;
-		int Height;
-		double[] Range_X;
-		double[] Range_Y;
-		int Resolution;
+		int Width = 1000;
+		int Height = 600;
+		double[] Range_X = {-10, 10};
+		double[] Range_Y = {-10, 10};
+		int Resolution = 200;
 		
 	}
 

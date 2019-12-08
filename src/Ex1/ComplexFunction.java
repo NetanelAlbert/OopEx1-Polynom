@@ -146,10 +146,10 @@ public class ComplexFunction implements complex_function {
 	private void makeCF(function f, Operation op) {
 		if (f == null)
 			throw new RuntimeException("Function argument can't be null");
-
+		function tmp = f.copy();
 		if (this.op != Operation.None)
 			this.left = copy();
-		this.right = f;
+		this.right = tmp;
 		this.op = op;
 	}
 

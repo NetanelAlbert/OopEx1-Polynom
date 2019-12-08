@@ -139,9 +139,11 @@ public class Monom implements function{
 	
 	public String toString() {
 		String ans = "";
-		if(get_coefficient() == -1) 
+		if(get_coefficient() == -1) {
 			ans += '-';
-		else if(get_coefficient() != 1 || get_power() == 0) 
+			if(get_power() == 0)
+				ans += "1";
+		}else if(get_coefficient() != 1 || get_power() == 0) 
 			ans += String.format("%.7f", get_coefficient());
 		
 		if(get_power() > 0) ans += "x";
