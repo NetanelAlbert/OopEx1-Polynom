@@ -37,7 +37,10 @@ public class ComplexFunction implements complex_function {
 		case Times:
 			return left.f(x) * right.f(x);
 		case Divid:
-			return left.f(x) / right.f(x);
+			double rightF = right.f(x);
+			if(rightF == 0)
+				throw new ArithmeticException("/ by zero");
+			return left.f(x) / rightF;
 		case Max:
 			return Math.max(left.f(x), right.f(x));
 		case Min:
@@ -56,6 +59,7 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public function initFromString(String s) {
+		s=s.replaceAll(" ", "");
 		if(s.charAt(s.length()-1) == ')') {
 			Operation op;
 			try {
@@ -195,7 +199,7 @@ public class ComplexFunction implements complex_function {
 			return Operation.Comp;
 
 		default:
-			throw new RuntimeException("Operation unknown");
+			throw new RuntimeException("Operation '"+s+"' unknown");
 
 		}
 	}

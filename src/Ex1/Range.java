@@ -20,6 +20,11 @@ public class Range {
 		if(this.isEmpty()) {ans = "Empty Range";}
 		return ans;
 	}
+	public double size() {
+		if(isEmpty())
+			return 0;
+		return _max - _min;
+	}
 	public boolean isEmpty() {
 		return this.get_min()>this.get_max();
 	}

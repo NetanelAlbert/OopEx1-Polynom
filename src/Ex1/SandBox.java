@@ -9,20 +9,18 @@ import com.google.gson.Gson;
 public class SandBox {
 
 	public static void main(String[] args) {
-		ComplexFunction cf1 = new ComplexFunction("div", new Polynom("x+1"), new Monom(3,4));
-		function cf2 = cf1.initFromString("Mul(3x^5-4X,plus(x,7x))");
+		ComplexFunction cf1 = new ComplexFunction("min", new Polynom("x+5"), new Monom(3,2));
+		function cf2 = cf1.initFromString("2X");
 		Functions_GUI fgui = new Functions_GUI();
-		Functions_GUI fgui2 = new Functions_GUI();
-		fgui.add(cf1);
+		/*fgui.add(cf1);
 		fgui.add(cf2);
+		fgui.add(cf1.initFromString("max(0.3x^5, 1.2x^7)"));
+		fgui.add(cf1.initFromString("2 + 3x + x^4"));
+		fgui.add(cf1.initFromString("1+x+x^2"));
+		fgui.add(cf1.initFromString("3"));
+		*/
+		fgui.add(cf1.initFromString("comp(2.5x - x^3, div(8x, 5))"));
 		
-		try {
-			fgui.saveToFile("Functions_GUI.txt");
-			fgui2.initFromFile("Functions_GUI.txt");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		fgui.drawFunctions("GUI_params.txt");
 		
