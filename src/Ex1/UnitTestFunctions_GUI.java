@@ -7,22 +7,22 @@ import org.junit.jupiter.api.Test;
 class UnitTestFunctions_GUI {
 
 	@Test
-	void test() {
+	void test1() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
-	void test() {
+	void test2() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
-	void test() {
+	void test3() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
-	void test() {
+	void test4() {
 		fail("Not yet implemented");
 	}
 

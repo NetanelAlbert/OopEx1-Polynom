@@ -18,11 +18,15 @@ public class SandBox {
 		fgui.add(cf1.initFromString("3"));
 		fgui.add(cf1.initFromString("comp(2.5x - x^3, div(8x, 5))"));
 		*/
-		ComplexFunction cf2 = (ComplexFunction)cf1.initFromString("div(x,x+1)");//("div(1,x-2)");
-		
+		function cf2 = UnitTestPolynom.randomPolynom();//(ComplexFunction)cf1.initFromString("div(x,x+1)");//("div(1,x-2)");
+		ComplexFunction cf3 = UnitTestComplexFunctio.randomCF();
+		fgui.add(cf3);
 		fgui.add(cf2);
+		System.out.println(cf3);
+		System.out.println(cf2);
+		fgui.drawFunctions("GUI_params.txt");
 		
-		fgui.drawFunctions("blaGUI_params.txt");
+		
 		
 	}
 

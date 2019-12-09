@@ -18,7 +18,7 @@ public class Functions_GUI extends ArrayList<function> implements functions {
 		try {
 			sl = Files.readAllLines(Paths.get(file));
 		} catch (IOException e) {
-			throw new IOException("file not exist");
+			throw new IOException("file '"+file+"' not exist");
 		}
 		clear();
 		ComplexFunction cf = new ComplexFunction(new Monom(0,0));

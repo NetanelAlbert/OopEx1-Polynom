@@ -10,8 +10,8 @@ public class PolynomTest {
 		equalsToString();
 		copyTest();
 		WrongPolynom();
-		derivativeTest();
-		areaTest();
+		//derivativeTest();
+		//areaTest();
 		rootTest();
 		System.out.println("\nEnd of PolynomTest");
 	}
@@ -106,7 +106,7 @@ public class PolynomTest {
 			System.out.println("WrongPolynom: " + fails + " fails");
 	}
 	
-	private static void derivativeTest() {
+	/*private static void derivativeTest() {
 		System.out.println("derivativeTest - start");
 		int fails = 0;
 		String[] polinoms = {"3x^5-x^3+9.2x-3", "9x^9+8x^3", "2345"};
@@ -124,9 +124,9 @@ public class PolynomTest {
 			System.out.println("derivativeTest: good");
 		else
 			System.out.println("derivativeTest: " + fails + " fails");
-	}
+	}*/
 	
-	private static void areaTest() {
+	/*private static void areaTest() {
 		System.out.println("areaTest - start (might take a few seconds)");
 		int fails = 0;
 		String[] polinoms = {"x^2+3x-5", "x^3-x^2+0.5", "x"};
@@ -145,7 +145,7 @@ public class PolynomTest {
 			System.out.println("areaTest: good");
 		else
 			System.out.println("areaTest: " + fails + " fails");
-	}
+	}*/
 	
 	private static void rootTest() {
 		System.out.println("rootTest - start");
