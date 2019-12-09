@@ -8,15 +8,15 @@ public class ComplexFunction implements complex_function {
 	public ComplexFunction(function f) {
 		if (f == null)
 			throw new RuntimeException("Function argument can't be null");
-		this.left = f;
+		this.left = f.copy();
 		this.op = Operation.None;
 	}
 
 	public ComplexFunction(Operation op, function f1, function f2) {
 		if (f1 == null)
-			throw new RuntimeException("Function argument can't be null");
-		this.left = f1;
-		this.right = f2;
+			throw new RuntimeException("Left function argument can't be null");
+		this.left = f1.copy();
+		this.right = f2 == null ? null : f2.copy();
 		this.op = op;
 
 		if (f2 == null && op == null)
@@ -157,17 +157,22 @@ public class ComplexFunction implements complex_function {
 		if(!(obj instanceof function))
 			return false;
 		
-		function f = (function)obj;
+		function fun = (function)obj;
 			
 		for (int i = -100; i < 100; i++) {
-			if(!compareDouble(f(i), f.f(i))) 
+			if(i==0)
+				continue; 
+			if(!compareDouble(f(i), fun.f(i))) 
 				return false;
 		}
 		return true;
 	}
 	
 	private boolean compareDouble(double d1, double d2) {
-		return Math.abs(d2-d1) < Monom.EPSILON;
+		boolean ans =  Math.abs(d2-d1) < Monom.EPSILON;
+		if(!ans)
+			System.out.println("Not equals: "+d1+", "+d2);
+		return ans;
 	}
 
 	public String toString() {

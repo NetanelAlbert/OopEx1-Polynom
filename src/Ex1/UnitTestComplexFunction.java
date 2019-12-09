@@ -1,9 +1,6 @@
 package Ex1;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.security.cert.PKIXRevocationChecker.Option;
-
 import org.junit.jupiter.api.Test;
 
 class UnitTestComplexFunctio{
@@ -20,53 +17,54 @@ class UnitTestComplexFunctio{
 	}
 	
 	@Test
-	void test1() {
+	void testPlus() {
+		for (int i = 0; i < 10; i++) {
+			Polynom p1 = UnitTestPolynom.randomPolynom();
+			Polynom p2 = UnitTestPolynom.randomPolynom();
+			ComplexFunction cf = new ComplexFunction(Operation.Plus, p1, p2);
+			p1.add(p2);
+			assertEquals(p1, cf);
+		}
+	}
+	
+	@Test
+	void testMul() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
-	void test2() {
+	void testDiv() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
-	void test3() {
+	void testMax() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
-	void test4() {
+	void testMin() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
-	void test5() {
+	void testComp() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
-	void test6() {
+	void testEqual() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
-	void test7() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	void test9() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	void test10() {
+	void testToString() {
 		fail("Not yet implemented");
 	}
 	
 	public static ComplexFunction randomCF() {
 		Operation[] opArr = {Operation.Plus, Operation.Times, Operation.Divid, Operation.Max, Operation.Min, Operation.Comp};
-		int opNum = (int)(Math.random()*3+1);
+		int opNum = (int)(Math.random()*2+1);
 		ComplexFunction ans = new ComplexFunction(UnitTestPolynom.randomPolynom());
 		for (int i = 0; i < opNum; i++) {
 			Operation op = opArr[(int)(Math.random()*opArr.length)];

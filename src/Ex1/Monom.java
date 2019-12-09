@@ -144,7 +144,7 @@ public class Monom implements function{
 			if(get_power() == 0)
 				ans += "1";
 		}else if(get_coefficient() != 1 || get_power() == 0) 
-			ans += String.format("%.7f", get_coefficient());
+			ans += get_coefficient(); //String.format("%.7f", get_coefficient());
 		
 		if(get_power() > 0) ans += "x";
 		if(get_power() > 1) ans += "^" + get_power();

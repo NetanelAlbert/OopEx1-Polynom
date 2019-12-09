@@ -45,7 +45,6 @@ public class Functions_GUI extends ArrayList<function> implements functions {
 
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
-		
 		StdDraw.setCanvasSize(width, height);
 		StdDraw.setXscale(rx.get_min(), rx.get_max());
 		StdDraw.setYscale(ry.get_min(), ry.get_max());
