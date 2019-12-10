@@ -62,10 +62,10 @@ class UnitTestMonom {
 	public static Monom randomMonom() {
 		double c = 0;
 		while(c == 0)
-			c = Math.random()*20*(Math.random()-0.5); //some number in range -10 to 10
+			c = (int)(Math.random()*20*(Math.random()-0.5)); //some number in range -10 to 10
 		
-		c = ((int)c*100)/100.0;
-		int p = (int)(Math.random()*10);
+		//c = ((int)(c*100))/100.0;
+		int p = (int)(Math.random()*6);
 		return new Monom(c,p);
 	}
 

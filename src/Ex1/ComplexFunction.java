@@ -1,17 +1,33 @@
 package Ex1;
-
+/**
+ * This class represent a Complex function form:
+ * Operation(function, function) when function is a Monom, Polynom or ComplexFunction.
+ * with add, multiply, divide and more functionality.
+ * @author Avital Pikovsky & Netanel Albert
+ *
+ */
 public class ComplexFunction implements complex_function {
 	private function left;
 	private function right;
 	private Operation op;
 
+	/**
+	 * Constructor that gets one function (the left function) and initialize None Operation.
+	 * this ComplexFunction will be equals to f
+	 * @param f - the left function.
+	 */
 	public ComplexFunction(function f) {
 		if (f == null)
 			throw new RuntimeException("Function argument can't be null");
 		this.left = f.copy();
 		this.op = Operation.None;
 	}
-
+	/**
+	 * Constructor that gets operation and two functions.
+	 * @param op - the Operation.
+	 * @param f1 - the left function.
+	 * @param f2 - the right function.
+	 */
 	public ComplexFunction(Operation op, function f1, function f2) {
 		if (f1 == null)
 			throw new RuntimeException("Left function argument can't be null");
@@ -22,7 +38,12 @@ public class ComplexFunction implements complex_function {
 		if (f2 == null && op == null)
 			this.op = Operation.None;
 	}
-
+	/**
+	 * Constructor that gets operation represents by string and two functions.
+	 * @param s - the Operation String.
+	 * @param f1 - left function.
+	 * @param f2 - right function.
+	 */
 	public ComplexFunction(String s, function f1, function f2) {
 		this(stringtoOperation(s), f1, f2);
 	}
@@ -67,7 +88,7 @@ public class ComplexFunction implements complex_function {
 			} catch (IndexOutOfBoundsException e) {
 				throw new RuntimeException("Invalid string - not contain '('");
 			}
-			
+
 			int count = 0;
 			int index = -1; 
 			for (int i = s.indexOf('(')+1; i < s.length()-1 && index == -1; i++) {
@@ -78,13 +99,13 @@ public class ComplexFunction implements complex_function {
 				else if(s.charAt(i) == ',' && count == 0)
 					index = i;
 			}
-			
+
 			if(index == -1)
 				throw new RuntimeException("Invalid string - can't find ',' in the correct place");
-			
+
 			function left = initFromString(s.substring(s.indexOf('(')+1, index));
 			function right = initFromString(s.substring(index+1, s.length()-1));
-			
+
 			return new ComplexFunction(op, left, right);
 		} else {
 			return new Polynom(s);
@@ -142,7 +163,7 @@ public class ComplexFunction implements complex_function {
 	public Operation getOp() {
 		return op;
 	}
-
+	
 	private void makeCF(function f, Operation op) {
 		if (f == null)
 			throw new RuntimeException("Function argument can't be null");
@@ -152,14 +173,15 @@ public class ComplexFunction implements complex_function {
 		this.right = tmp;
 		this.op = op;
 	}
-
+	
+	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof function))
 			return false;
-		
+
 		function fun = (function)obj;
-			
-		for (int i = -100; i < 100; i++) {
+
+		for (int i = -20; i < 20; i++) {
 			if(i==0)
 				continue; 
 			if(!compareDouble(f(i), fun.f(i))) 
@@ -167,20 +189,22 @@ public class ComplexFunction implements complex_function {
 		}
 		return true;
 	}
-	
+
 	private boolean compareDouble(double d1, double d2) {
-		boolean ans =  Math.abs(d2-d1) < Monom.EPSILON;
-		if(!ans)
-			System.out.println("Not equals: "+d1+", "+d2);
-		return ans;
+		return Math.abs(d2-d1) < Monom.EPSILON;
 	}
 
+	@Override
 	public String toString() {
 		if(op == Operation.None)
 			return left.toString();
 		return operationToString(op)+"("+left+","+right+")";
 	}
-	
+	/**
+	 * Convert String to {@link Operation} by the format in {@link Operation}
+	 * @param s the string we want to convert to operation
+	 * @return the converted {@link Operation} 
+	 */
 	static private Operation stringtoOperation(String s) {
 		s = s.toLowerCase();
 		switch (s) {
@@ -208,7 +232,11 @@ public class ComplexFunction implements complex_function {
 
 		}
 	}
-	
+	/**
+	 * Convert {@link Operation} to String by the format in {@link Operation}
+	 * @param op the operation we want to convert to string 
+	 * @return the converted string 
+	 */
 	static private String operationToString(Operation op) {
 		switch (op) {
 

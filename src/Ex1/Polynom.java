@@ -101,12 +101,15 @@ public class Polynom implements Polynom_able {
 	}
 
 	@Override
-	public boolean equals(Object p1) {
-		if(p1 instanceof Polynom)
-			return equals((Polynom)p1);
+	public boolean equals(Object o) {
+		if(o instanceof ComplexFunction)
+			return o.equals(this);
 		
-		if(p1 instanceof Monom)
-			return equals(new Polynom(p1.toString()));
+		if(o instanceof Polynom)
+			return equals((Polynom)o);
+		
+		if(o instanceof Monom)
+			return equals(new Polynom(o.toString()));
 		
 		return false;
 	}

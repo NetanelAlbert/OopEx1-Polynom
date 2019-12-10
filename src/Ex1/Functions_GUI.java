@@ -11,7 +11,12 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 
 public class Functions_GUI extends ArrayList<function> implements functions {
-
+	/**
+	 * class thats can hold a collection of functions,
+	 * write and read the functions to file and show them on GUI.
+	 * 
+	 * @author Avital Pikovsky & Netanel Albert
+	 */
 	@Override
 	public void initFromFile(String file) throws IOException {
 		java.util.List<String> sl = null;
@@ -38,9 +43,7 @@ public class Functions_GUI extends ArrayList<function> implements functions {
 		for (int i = 0; i < size(); i++) {
 			sl.add(get(i).toString());
 		}
-
 		Files.write(Paths.get(file), sl);
-
 	}
 
 	@Override

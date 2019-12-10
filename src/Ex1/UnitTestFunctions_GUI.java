@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 class UnitTestFunctions_GUI {
-	String[] cfs =  {
+	public static String[] cfs =  {
 			"comp(comp(-4.0x^2+5.0x^3-2.0x^4,-2.0+x^7),0)",
 			"max(plus(0,0),6.0x^7)",
 			"div(div(3.0x^8,2.0+x^3-12.0x^7+x^9),-2.0x^3)",
@@ -30,7 +30,7 @@ class UnitTestFunctions_GUI {
 	};
 	
 	@Test
-	void testSaveAndInitFile() {
+	void testSaveAndInitFileAndDrow() {
 		Functions_GUI fgui1 = new Functions_GUI();
 		ComplexFunction cf = new ComplexFunction(new Monom(0,0));
 		for (int i = 0; i < cfs.length; i++) {

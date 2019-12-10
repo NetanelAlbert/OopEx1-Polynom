@@ -106,7 +106,7 @@ class UnitTestPolynom {
 	}
 	
 	public static Polynom randomPolynom() {
-		int monoms = (int)(Math.random()*6);
+		int monoms = (int)(Math.random()*5);
 		Polynom p = new Polynom();
 		for (int i = 0; i < monoms; i++) {
 			p.add(UnitTestMonom.randomMonom());
