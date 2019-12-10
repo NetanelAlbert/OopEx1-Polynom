@@ -8,6 +8,7 @@ Our project enable the user to builds a functions, do an oparations on them, kee
 Our project have a 4 main classes: Polynom, Monom, ComplexFunction and Function_GUI when each of them has functions that can be applied on them.
 
 Monom - mathematical function represent by ax^b, where a real number and b is an none negative integer.
+
 Polynom - form collection of monoms.
 
 ComplexFunction - shape of - Operation(function, function) - when function is Monom, Polynom or ComplexFunction.
