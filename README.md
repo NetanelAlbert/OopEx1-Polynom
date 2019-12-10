@@ -15,3 +15,4 @@ ComplexFunction - shape of - Operation(function, function) - when function is Mo
 
 Function_GUI - class thats can hold a collection of functions, write and read the functions to file and show them on GUI.
 
+![2019-12-10 (2)](https://user-images.githubusercontent.com/57085913/70539683-b9739880-1b6c-11ea-8943-70766740bc49.png)
