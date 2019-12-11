@@ -1,10 +1,11 @@
-package Ex1;
+package Ex1Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+
+import Ex1.Monom;
+import Ex1.Polynom;
 
 class UnitTestPolynom {
 
@@ -16,6 +17,7 @@ class UnitTestPolynom {
 		for (int i = 0; i < ans.length; i++) {
 			Polynom p = new Polynom(org[i]);
 			Polynom ad = new Polynom(add[i]);
+			p.add(ad);
 			Polynom an = new Polynom(ans[i]);
 			assertEquals(p, an);
 		}
@@ -33,21 +35,29 @@ class UnitTestPolynom {
 	@Test
 	void testMultiply() {
 		String[] org = {"1+2x+5.3x^4", "3x^3", "3.5+4x-5x^7"};
-		String[] ans = {"2x^3+10.6x^7", "6x^6", "7x^3+8x^4-10x^10"};
+		String[] ans = {"2x^3+4x^4+10.6x^7", "6x^6", "7x^3+8x^4-10x^10"};
 		Polynom mul = new Polynom("2x^3");
 		for (int i = 0; i < ans.length; i++) {
 			Polynom p = new Polynom(org[i]);
 			p.multiply(mul);
 			Polynom a = new Polynom(ans[i]);
-			assertEquals(p, a);
+			assertEquals(a, p);
 		}
 	}
+	
 	@Test
 	void testEquals() {
 		for (int i = 0; i < 100; i++) {
 			Polynom p = randomPolynom();
 			Polynom copy = (Polynom)p.copy();
 			assertEquals(p, copy);
+		}
+		Monom m = new Monom("1");
+		for (int i = 0; i < 100; i++) {
+			Polynom p = randomPolynom();
+			Polynom copy = (Polynom)p.copy();
+			copy.add(m);
+			assertFalse(p.equals(copy), p+" shuldn't be equals to "+copy);
 		}
 	}
 	
@@ -71,6 +81,7 @@ class UnitTestPolynom {
 			assertTrue(p.equals(pCopy), p+" isn't equals to his copy: " + pCopy);
 		}
 	}
+	
 	@Test
 	void testDerivative() {
 		String[] polinoms = {"3x^5-x^3+9.2x-3", "9x^9+8x^3", "2345"};
@@ -106,7 +117,7 @@ class UnitTestPolynom {
 	}
 	
 	public static Polynom randomPolynom() {
-		int monoms = (int)(Math.random()*5);
+		int monoms = (int)(Math.random()*5+1);
 		Polynom p = new Polynom();
 		for (int i = 0; i < monoms; i++) {
 			p.add(UnitTestMonom.randomMonom());

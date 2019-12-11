@@ -61,7 +61,7 @@ public class Monom implements function{
 		double p = get_power();
 		double c = get_coefficient();
 		ans = c*Math.pow(x, p);
-		return ans;
+		return ans+0; // +0 to avoid case of -0.0
 	} 
 	/**
 	 * @return true if the coefficient is less then {@value #EPSILON}, false otherwise
@@ -162,6 +162,9 @@ public class Monom implements function{
 			return o.equals(this);
 		if(o instanceof Monom) {
 			Monom m = (Monom)o;
+			if(isZero() && m.isZero())
+				return true;
+			
 			return get_power() == m.get_power() &&
 					Math.abs(get_coefficient() - m.get_coefficient()) < EPSILON;
 	

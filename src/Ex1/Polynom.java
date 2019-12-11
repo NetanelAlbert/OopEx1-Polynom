@@ -50,7 +50,7 @@ public class Polynom implements Polynom_able {
 			Monom monom = iterator.next();
 			ans += monom.f(x);
 		}
-		return ans;
+		return ans+0; // +0 to avoid case of -0.0
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class Polynom implements Polynom_able {
 		else
 			map.put(index, new Monom(m1));
 
-		if(map.get(index).isZero()) // remove empty Monom
+		if(map.get(index).isZero()) // remove zero Monom
 			map.remove(index);
 
 	}
@@ -89,7 +89,7 @@ public class Polynom implements Polynom_able {
 			map.clear();
 			return;
 		}
-		Iterator<Monom> it = p1.iteretor();
+		Iterator<Monom> it = ((Polynom_able)p1.copy()).iteretor();
 		Polynom_able copy = copy();
 
 		map.clear();
@@ -115,7 +115,7 @@ public class Polynom implements Polynom_able {
 	}
 	private boolean equals(Polynom p1) {
 		Polynom_able p = copy();
-		p.substract(p);
+		p.substract(p1);
 		return p.isZero();
 	}
 	

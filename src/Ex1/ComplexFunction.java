@@ -10,7 +10,7 @@ public class ComplexFunction implements complex_function {
 	private function left;
 	private function right;
 	private Operation op;
-
+	
 	/**
 	 * Constructor that gets one function (the left function) and initialize None Operation.
 	 * this ComplexFunction will be equals to f
