@@ -156,7 +156,7 @@ public class Polynom implements Polynom_able {
 	}
 
 	@Override
-	public Polynom_able derivative() { // נגזרת
+	public Polynom_able derivative() {
 		Polynom p = new Polynom();
 		Iterator<Monom> it = iteretor();
 		while (it.hasNext()) {
